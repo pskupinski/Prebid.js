@@ -58,6 +58,7 @@ function LockerDomeAdapter() {
         }
       };
       request.open("POST", 'https://lockerdome.com/ladbid/prebid', true);
+      request.setRequestHeader('Content-Type', 'text/plain');
       request.withCredentials = true;
       request.send(JSON.stringify(payload));
     }
