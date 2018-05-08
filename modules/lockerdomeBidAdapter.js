@@ -91,9 +91,9 @@ function LockerDomeAdapter() {
         bidResponse.ad = serverBidResponse.ad;
         bidResponse.ttl = serverBidResponse.ttl;
 
-        bidManager.addBidResponse(bidById[bidResponse.requestId].placementCode, bidResponse);
+        bidManager.addBidResponse(bidById[serverBidResponse.requestId].placementCode, bidResponse);
 
-        bidResponseMap[bidResponse.requestId] = true;
+        bidResponseMap[serverBidResponse.requestId] = true;
       }
 
       for (let i = 0; i < bids.length; ++i) {
