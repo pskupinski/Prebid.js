@@ -30,7 +30,7 @@ function LockerDomeAdapter() {
       referrer: referrer
     };
 
-    if (!window.XMLHttpRequest) {
+    if (!window.XMLHttpRequest || window.XDomainRequest) {
       return bail();
     }
 
