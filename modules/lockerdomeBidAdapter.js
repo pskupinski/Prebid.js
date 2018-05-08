@@ -30,7 +30,7 @@ function LockerDomeAdapter() {
       referrer: referrer
     };
 
-    if (!window.XMLHttpRequest || window.XDomainRequest) {
+    if (!window.XMLHttpRequest) {
       return bail();
     }
 
@@ -40,6 +40,9 @@ function LockerDomeAdapter() {
       const payloadString = JSON.stringify(payload);
 
       const request = new XMLHttpRequest();
+      if (request.responseType === undefined) {
+        return bail();
+      }
       request.onreadystatechange = function () {
         const DONE = 4;
         if (request.readyState === DONE) {
