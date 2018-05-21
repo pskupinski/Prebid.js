@@ -129,10 +129,19 @@ function LockerDomeAdapter() {
       _callBids(params);
     }, 200);
 
-    lookupIabConsent(function success (gdprConsent) {
+    lookupIabConsent(function success (cmpConsentObject) {
       if (submittedBidRequest) return;
       clearTimeout(timer);
-      _callBids(params, { gdprConsent: gdprConsent });
+      let bidderRequest;
+      if (cmpConsentObject) {
+        bidderRequest = {
+          gdprConsent: {
+            consentString: cmpConsentObject.metadata,
+            gdprApplies: cmpConsentObject.gdprApplies
+          }
+        };
+      }
+      _callBids(params, bidderRequest);
     }, function failure () {
       if (submittedBidRequest) return;
       clearTimeout(timer);
